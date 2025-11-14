@@ -1,0 +1,80 @@
+{
+  "name": "form-to-volume",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "files",
+        "operation": "uploadFile",
+        "volumePath": "external.n8n.attachments",
+        "filePath": "=csv/upload_test.csv",
+        "dataFieldName": "={{ $('On form submission').item.binary.OrderFile }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-databricks.databricks",
+      "typeVersion": 1,
+      "position": [
+        704,
+        0
+      ],
+      "id": "2ed69144-14e4-422a-b328-5079a5568d41",
+      "name": "Upload a file",
+      "credentials": {
+        "databricks": {
+          "id": "dAOZOjovaCcRrmDh",
+          "name": "Databricks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Order Processor",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "OrderFile",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".csv",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "af3efecf-1c2c-43b4-b40a-c99ab5485b29",
+      "name": "On form submission",
+      "webhookId": "ca4dfe00-5790-4ebe-bbae-a79ad0d83602"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Upload a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5274d3a3-b2e2-42e7-bd70-f42818d905a2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bb638efd4ac09334c9f3b7ad764d129d6a1643a9748ff7763df1dfa3254e429d"
+  },
+  "id": "GiOiAGyu2oWicXCb",
+  "tags": []
+}
